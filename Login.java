@@ -69,16 +69,16 @@ public class Login extends JFrame {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-							if(txtUsername.getText().contentEquals("12345") && pwdPassword.getText().contentEquals("qwerty"))
+					        Class.forName("oracle.jdbc.driver.OracleDriver");
+					        Connection con;
+					        con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
+							User u=new User();
+							u=u.findByEMail(con, txtUsername.getText());
+							if(u!=null && pwdPassword.getText().contentEquals(u.Password))
 							{
 								try {
-						            Class.forName("oracle.jdbc.driver.OracleDriver");
-						            Connection con;
-						            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
-
-						            
 						            System.out.println("sign in successful.");
-						            con.close();
+						            
 						        } catch (Exception e) {
 						            System.out.println("Exception:" + e);
 						        }
@@ -86,6 +86,7 @@ public class Login extends JFrame {
 							else {
 								exp.setText("Wrong username/password");
 							}
+							con.close();
 				}
 				catch(Exception e){
 					System.out.println("exception:"+e);
