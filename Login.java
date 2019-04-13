@@ -77,7 +77,7 @@ public class Login extends JFrame {
 						            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
 
 						            
-						            //System.out.println("connected.");
+						            System.out.println("sign in successful.");
 						            con.close();
 						        } catch (Exception e) {
 						            System.out.println("Exception:" + e);
