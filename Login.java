@@ -87,6 +87,9 @@ public class Login extends JFrame {
 								exp.setText("Wrong username/password");
 							}
 							con.close();
+							Home hf=new Home(u);
+							hf.setVisible(true);
+							setVisible(false);
 				}
 				catch(Exception e){
 					System.out.println("exception:"+e);
