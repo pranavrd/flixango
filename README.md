@@ -1,2 +1,2 @@
 # flixango
-#rep for dbms project movie databse management system
+#rep for dbms project movie database management system
