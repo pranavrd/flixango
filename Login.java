@@ -76,8 +76,8 @@ public class Login extends JFrame {
 						            Connection con;
 						            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
 
-						            //User u = User.findByEMail(con, "pranav.2@gmail.com");
-						            System.out.println("connected.");
+						            
+						            //System.out.println("connected.");
 						            con.close();
 						        } catch (Exception e) {
 						            System.out.println("Exception:" + e);
@@ -104,8 +104,9 @@ public class Login extends JFrame {
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					f2.setVisible(true);
-					//frame.setVisible(false);
+					sign_up ff = new sign_up();
+					ff.setVisible(true);
+					setVisible(false);
 				}
 				catch(Exception e) {
 					System.out.println(e);}
