@@ -5,6 +5,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Home extends JFrame {
 
@@ -17,6 +24,7 @@ public class Home extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					
 					Home frame = new Home();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -37,11 +45,45 @@ public class Home extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(74, 121, 291, 14);
-		contentPane.add(lblNewLabel);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(17, 0, 407, 21);
+		contentPane.add(menuBar);
 		
-		lblNewLabel.setText("Welcome, "+u.Name+"!");
+		JMenu mnSearch = new JMenu("search");
+		menuBar.add(mnSearch);
+		
+		JMenuItem mntmMovie = new JMenuItem("movie");
+		mntmMovie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MovieSearch msf=new MovieSearch(u);
+				msf.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSearch.add(mntmMovie);
+		
+		JMenuItem mntmReview = new JMenuItem("review");
+		mntmReview.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ReviewSearch rsf=new ReviewSearch(u);
+				rsf.setVisible(true);
+				setVisible(false);
+			}
+		});
+		mnSearch.add(mntmReview);
+		
+		JMenuItem mntmWatchlist = new JMenuItem("watchlist");
+		menuBar.add(mntmWatchlist);
+		
+		JMenuItem mntmSignOut = new JMenuItem("sign out");
+		menuBar.add(mntmSignOut);
+		
+		JLabel lblNewLabel = new JLabel("Welcome, "+u.Name.toUpperCase()+"!");
+		lblNewLabel.setBounds(150, 126, 274, 14);
+		contentPane.add(lblNewLabel);
 	}
 
+	public Home() {
+		// TODO Auto-generated constructor stub
+	}
 }

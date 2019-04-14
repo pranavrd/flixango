@@ -74,9 +74,13 @@ public class Login extends JFrame {
 					        con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
 							User u=new User();
 							u=u.findByEMail(con, txtUsername.getText());
+							System.out.println(pwdPassword.getText()+"    "+u.Password);
 							if(u!=null && pwdPassword.getText().contentEquals(u.Password))
 							{
 								try {
+									Home hf=new Home(u);
+									hf.setVisible(true);
+									setVisible(false);
 						            System.out.println("sign in successful.");
 						            
 						        } catch (Exception e) {
@@ -85,11 +89,11 @@ public class Login extends JFrame {
 							}
 							else {
 								exp.setText("Wrong username/password");
+								//Thread.sleep(10000);
+								//exp.setText("");
 							}
 							con.close();
-							Home hf=new Home(u);
-							hf.setVisible(true);
-							setVisible(false);
+							
 				}
 				catch(Exception e){
 					System.out.println("exception:"+e);
