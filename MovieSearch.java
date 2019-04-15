@@ -59,7 +59,7 @@ public class MovieSearch extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnBack.setBounds(10, 0, 55, 14);
+		btnBack.setBounds(10, 0, 55, 20);
 		contentPane.add(btnBack);
 	}
 }
