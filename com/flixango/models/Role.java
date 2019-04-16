@@ -59,4 +59,36 @@ public class Role {
         return r;
     }
 
+    public static Role findOneByName(Connection con, String name) {
+        Role r = null;
+        try {
+            String query = "SELECT ID, Name FROM Roles WHERE Name LIKE ?";
+            PreparedStatement stmnt = con.prepareStatement(query);
+            stmnt.setString(1, "%" + name + "%");
+            ResultSet rs = stmnt.executeQuery();
+            rs.next();
+            r = new Role(con, rs.getInt(1), rs.getString(2));
+        } catch (Exception e) {
+            System.out.println("Exception finding role by name:" + e);
+        }
+        return r;
+    }
+
+    public boolean save() {
+        boolean status = false;
+        try {
+            String query = "UPDATE ROLES SET Name=? WHERE ID=?";
+            PreparedStatement stmnt = this.con.prepareStatement(query);
+            stmnt.setString(1, this.Name);
+            stmnt.setInt(2, this.ID);
+            int num = stmnt.executeUpdate();
+            if (num > 0) {
+                status = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Exception saving Roles:" + e);
+        }
+        return status;
+    }
+
 }

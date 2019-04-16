@@ -1,3 +1,5 @@
+
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -5,20 +7,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.flixango.models.Movie;
 import com.flixango.models.User;
+import com.flixango.models.WatchList;
 
+import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.TextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
 
-public class MovieSearch extends JFrame {
+public class NewWatch extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -30,7 +32,7 @@ public class MovieSearch extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MovieSearch frame = new MovieSearch();
+					NewWatch frame = new NewWatch();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,45 +44,38 @@ public class MovieSearch extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MovieSearch(User u) {
+	public NewWatch(User u) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 600);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel lblEnterWatchlistName = new JLabel("Enter watchlist name :");
+		lblEnterWatchlistName.setBounds(22, 32, 131, 14);
+		contentPane.add(lblEnterWatchlistName);
+		
 		textField = new JTextField();
-		textField.setBounds(187, 35, 120, 20);
+		textField.setBounds(269, 29, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
+		JList list = new JList();
+		list.setBounds(38, 163, 317, -91);
+		contentPane.add(list);
 		
-		JButton btnBack = new JButton("back");
-		btnBack.addActionListener(new ActionListener() {
+		JButton btnCreate = new JButton("Create");
+		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Home hf=new Home(u);
-				hf.setVisible(true);
-				setVisible(false);
-			}
-		});
-		btnBack.setBounds(10, 0, 67, 31);
-		contentPane.add(btnBack);
-		
-		JButton btnSearch = new JButton("search");
-		btnSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try
-				{
+				try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 		        Connection con;
 		        con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
-				ArrayList<Movie> mlist=new ArrayList<Movie>();
-			    mlist=Movie.findByName(con, textField.getText());
-			    for(Movie mk : mlist)
-			    {
-			     textArea.setText(mk.toString());
-			    }
+		        WatchList.create(con, textField.getText(), u);
+		        ShowWatchlist swf=new ShowWatchlist(u);
+				swf.setVisible(true);
+				setVisible(false);
 				}
 				catch(SQLException x)
 				{
@@ -88,11 +83,14 @@ public class MovieSearch extends JFrame {
 				}
 				catch(Exception x)
 				{
-				  x.printStackTrace();
+					x.printStackTrace();
 				}
+				
 			}
 		});
-		btnSearch.setBounds(344, 34, 89, 23);
-		contentPane.add(btnSearch);
+		btnCreate.setBounds(311, 227, 89, 23);
+		contentPane.add(btnCreate);
+		
+		
 	}
 }

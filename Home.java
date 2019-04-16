@@ -67,7 +67,7 @@ public class Home extends JFrame {
 		JMenu mnWatchlist = new JMenu("watchlist");
 		menuBar.add(mnWatchlist);
 		
-		JMenuItem mntmShowWatchlist = new JMenuItem("show watchlist");
+		JMenuItem mntmShowWatchlist = new JMenuItem("show watchlists");
 		mntmShowWatchlist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ShowWatchlist shf=new ShowWatchlist(u);

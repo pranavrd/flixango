@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.flixango.models.User;
+import com.flixango.models.WatchList;
 
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;

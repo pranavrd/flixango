@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.flixango.models.NewWatch;
 import com.flixango.models.User;
 
 import javax.swing.JTextArea;
@@ -57,7 +58,9 @@ public class ShowWatchlist extends JFrame {
 		JButton btnCreateWatchlist = new JButton("create watchlist");
 		btnCreateWatchlist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				NewWatch nwf=new NewWatch(u);
+				nwf.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnCreateWatchlist.setBounds(293, 233, 131, 17);

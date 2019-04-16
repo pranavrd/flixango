@@ -1,4 +1,5 @@
 package com.flixango.models;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
