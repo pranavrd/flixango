@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.flixango.models.User;
+
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JMenuBar;
@@ -61,26 +64,40 @@ public class Home extends JFrame {
 		});
 		mnSearch.add(mntmMovie);
 		
-		JMenuItem mntmReview = new JMenuItem("review");
-		mntmReview.addActionListener(new ActionListener() {
+		JMenu mnWatchlist = new JMenu("watchlist");
+		menuBar.add(mnWatchlist);
+		
+		JMenuItem mntmShowWatchlist = new JMenuItem("show watchlist");
+		mntmShowWatchlist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReviewSearch rsf=new ReviewSearch(u);
-				rsf.setVisible(true);
+				ShowWatchlist shf=new ShowWatchlist(u);
+				shf.setVisible(true);
 				setVisible(false);
 			}
 		});
-		mnSearch.add(mntmReview);
-		
-		JMenuItem mntmWatchlist = new JMenuItem("watchlist");
-		menuBar.add(mntmWatchlist);
+		mnWatchlist.add(mntmShowWatchlist);
 		
 		JMenu mnAccount = new JMenu("Account");
 		menuBar.add(mnAccount);
 		
 		JMenuItem mntmChangeEmail = new JMenuItem("change email");
+		mntmChangeEmail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdateEmail uef=new UpdateEmail(u);
+				uef.setVisible(true);
+				setVisible(false);
+			}
+		});
 		mnAccount.add(mntmChangeEmail);
 		
 		JMenuItem mntmChangePhoneNumber = new JMenuItem("change phone number");
+		mntmChangePhoneNumber.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdatePhone upf=new UpdatePhone(u);
+				upf.setVisible(true);
+				setVisible(false);
+			}
+		});
 		mnAccount.add(mntmChangePhoneNumber);
 		
 		JMenuItem mntmSignOut = new JMenuItem("sign out");

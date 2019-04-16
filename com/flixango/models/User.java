@@ -1,3 +1,4 @@
+package com.flixango.models;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -39,12 +40,13 @@ public class User {
     public boolean save() {
         boolean status = false;
         try {
-            String query = "UPDATE Users SET Name=?, Email=?, Phone=?, Password=?";
+            String query = "UPDATE Users SET Name=?, Email=?, Phone=?, Password=? WHERE ID=?";
             PreparedStatement stmnt = con.prepareStatement(query);
             stmnt.setString(1, this.Name);
             stmnt.setString(2, this.EMail);
             stmnt.setLong(3, this.Phone);
             stmnt.setString(4, this.Password);
+            stmnt.setInt(5, this.ID);
             int num = stmnt.executeUpdate();
             if (num > 0) {
                 status = true;

@@ -1,3 +1,4 @@
+package com.flixango.models;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +22,11 @@ public class Genre {
     public Genre(Connection con, String Name) {
         this.con = con;
         this.Name = Name;
+    }
+
+    public String toString() {
+        String str = String.format("Name: %s", this.Name);
+        return str;
     }
 
     public static Genre create(Connection con, String name) {

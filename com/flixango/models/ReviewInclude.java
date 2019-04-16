@@ -1,3 +1,4 @@
+package com.flixango.models;
 public enum ReviewInclude {
     MOVIE,
     USER,

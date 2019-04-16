@@ -1,6 +1,8 @@
-import com.flixango.models.User;
-import com.flixango.models.Movie;
-import com.flixango.models.ReviewInclude;
+package com.flixango.models;
+//import User;
+//import Movie;
+//import ReviewInclude;
+
 
 import java.sql.*;
 
@@ -24,12 +26,22 @@ public class Review {
         this.con = con;
     }
 
+    public Review(Connection con, int RID, int UserID, int UMID, String Review, double Upvote, Timestamp created_at) {
+        this.con = con;
+        this.RID = RID;
+        this.UserID = UserID;
+        this.UMID = UMID;
+        this.Review = Review;
+        this.Upvote = Upvote;
+        this.created_at = created_at;
+    }
+
     public String toString() {
         String str = String.format("User: %s\n Movie:%s\n Review:%s, Upvote:%f, Created: %s", this.user, this.movie, this.Review, this.Upvote, this.created_at);
         return str;
     }
 
-    public Review findByID(Connection con, int id, ReviewInclude include) {
+    public static Review findByID(Connection con, int id, ReviewInclude include) {
         Review r = null;
         try {
             String query = "SELECT RID, UserID, UMID, Review, Upvote, created_at FROM reviews WHERE RID = ?";
@@ -37,13 +49,8 @@ public class Review {
             stmnt.setInt(1, id);
             ResultSet rs = stmnt.executeQuery();
             rs.next();
-            r = new Review(con);
-            r.RID = rs.getInt(1);
-            r.UserID = rs.getInt(2);
-            r.UMID = rs.getInt(3);
-            r.Review = rs.getString(4);
-            r.Upvote = rs.getDouble(5);
-            r.created_at = rs.getTimestamp(6);
+            r = new Review(con, rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                    rs.getString(4), rs.getDouble(5), rs.getTimestamp(6));
 
             switch (include) {
                 case MOVIE:
@@ -103,7 +110,7 @@ public class Review {
             if (num > 0) {
                 ResultSet rs = stmnt.getGeneratedKeys();
                 rs.next();
-                r = Review.findByID(con, rs.getInt(1), ReviewInclude.USER_MOVIE);
+                r = com.flixango.models.Review.findByID(con, rs.getInt(1), ReviewInclude.USER_MOVIE);
             }
 
         } catch (Exception e) {

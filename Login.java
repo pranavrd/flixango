@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.flixango.models.User;
+
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -91,7 +94,7 @@ public class Login extends JFrame {
 								//Thread.sleep(10000);
 								//exp.setText("");
 							}
-							con.close();
+							//con.close();
 							
 				}
 				catch(Exception e){

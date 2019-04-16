@@ -4,16 +4,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import java.awt.TextArea;
+
+import com.flixango.models.User;
+
+import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ReviewSearch extends JFrame {
+public class ShowWatchlist extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -22,7 +23,7 @@ public class ReviewSearch extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ReviewSearch frame = new ReviewSearch();
+					ShowWatchlist frame = new ShowWatchlist();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,22 +35,13 @@ public class ReviewSearch extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReviewSearch(User u) {
+	public ShowWatchlist(User u) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 600);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		textField = new JTextField();
-		textField.setBounds(164, 11, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		TextArea textArea = new TextArea();
-		textArea.setBounds(29, 91, 820, 434);
-		contentPane.add(textArea);
 		
 		JButton btnBack = new JButton("back");
 		btnBack.addActionListener(new ActionListener() {
@@ -59,9 +51,19 @@ public class ReviewSearch extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnBack.setBounds(10, 0, 55, 20);
+		btnBack.setBounds(0, 0, 72, 17);
 		contentPane.add(btnBack);
+		
+		JButton btnCreateWatchlist = new JButton("create watchlist");
+		btnCreateWatchlist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnCreateWatchlist.setBounds(293, 233, 131, 17);
+		contentPane.add(btnCreateWatchlist);
+		
+		
+		
 	}
-
-	
 }

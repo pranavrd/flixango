@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.flixango.models.Movie;
+import com.flixango.models.User;
+
 import javax.swing.JTextField;
 import java.awt.TextArea;
 import javax.swing.JButton;
@@ -51,32 +55,6 @@ public class MovieSearch extends JFrame {
 		contentPane.add(textArea);
 		
 		textField = new JTextField();
-		textField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try
-				{
-				Class.forName("oracle.jdbc.driver.OracleDriver");
-		        Connection con;
-		        con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
-				Movie m=new Movie();
-				ArrayList<Movie> mlist=new ArrayList<Movie>();
-			    mlist=m.findByName(con, textField.getText());
-			    for(Movie mk : mlist)
-			    {
-			     textArea.setText(mk.toString());
-			    }
-				}
-				catch(SQLException e)
-				{
-					e.printStackTrace();
-				}
-				catch(Exception e)
-				{
-				  e.printStackTrace();
-				}
-			}
-			
-		});
 		textField.setBounds(172, 11, 86, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
@@ -92,7 +70,33 @@ public class MovieSearch extends JFrame {
 		});
 		btnBack.setBounds(10, 0, 55, 20);
 		contentPane.add(btnBack);
+		
+		JButton btnSearch = new JButton("search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try
+				{
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+		        Connection con;
+		        con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
+				ArrayList<Movie> mlist=new ArrayList<Movie>();
+			    mlist=Movie.findByName(con, textField.getText());
+			    for(Movie mk : mlist)
+			    {
+			     textArea.setText(mk.toString());
+			    }
+				}
+				catch(SQLException x)
+				{
+					x.printStackTrace();
+				}
+				catch(Exception x)
+				{
+				  x.printStackTrace();
+				}
+			}
+		});
+		btnSearch.setBounds(286, 10, 89, 23);
+		contentPane.add(btnSearch);
 	}
-
-	
 }
