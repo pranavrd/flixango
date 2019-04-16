@@ -24,7 +24,6 @@ public class Home extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
 					Home frame = new Home();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -75,15 +74,27 @@ public class Home extends JFrame {
 		JMenuItem mntmWatchlist = new JMenuItem("watchlist");
 		menuBar.add(mntmWatchlist);
 		
+		JMenu mnAccount = new JMenu("Account");
+		menuBar.add(mnAccount);
+		
+		JMenuItem mntmChangeEmail = new JMenuItem("change email");
+		mnAccount.add(mntmChangeEmail);
+		
+		JMenuItem mntmChangePhoneNumber = new JMenuItem("change phone number");
+		mnAccount.add(mntmChangePhoneNumber);
+		
 		JMenuItem mntmSignOut = new JMenuItem("sign out");
-		menuBar.add(mntmSignOut);
+		mnAccount.add(mntmSignOut);
+		mntmSignOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Login jf=new Login();
+				jf.setVisible(true);
+				setVisible(false);
+			}
+		});
 		
 		JLabel lblNewLabel = new JLabel("Welcome, "+u.Name.toUpperCase()+"!");
 		lblNewLabel.setBounds(150, 126, 274, 14);
 		contentPane.add(lblNewLabel);
-	}
-
-	public Home() {
-		// TODO Auto-generated constructor stub
 	}
 }

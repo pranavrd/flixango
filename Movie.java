@@ -104,7 +104,7 @@ public class Movie {
         return m;
     }
 
-    public static ArrayList<Movie> findByName(Connection con, String name) {
+    public ArrayList<Movie> findByName(Connection con, String name) {
         ArrayList<Movie> m = new ArrayList<>();
         try {
             String query = "SELECT UMID, Name, Language, Duration, Rating, CCode FROM Movies WHERE Name LIKE ?";

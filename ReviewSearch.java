@@ -36,7 +36,7 @@ public class ReviewSearch extends JFrame {
 	 */
 	public ReviewSearch(User u) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 900, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,7 +48,7 @@ public class ReviewSearch extends JFrame {
 		textField.setColumns(10);
 		
 		TextArea textArea = new TextArea();
-		textArea.setBounds(27, 91, 380, 160);
+		textArea.setBounds(29, 91, 820, 434);
 		contentPane.add(textArea);
 		
 		JButton btnBack = new JButton("back");
@@ -62,4 +62,6 @@ public class ReviewSearch extends JFrame {
 		btnBack.setBounds(10, 0, 55, 20);
 		contentPane.add(btnBack);
 	}
+
+	
 }

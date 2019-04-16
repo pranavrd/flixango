@@ -74,7 +74,6 @@ public class Login extends JFrame {
 					        con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1522:XE", "system", "root");
 							User u=new User();
 							u=u.findByEMail(con, txtUsername.getText());
-							System.out.println(pwdPassword.getText()+"    "+u.Password);
 							if(u!=null && pwdPassword.getText().contentEquals(u.Password))
 							{
 								try {
